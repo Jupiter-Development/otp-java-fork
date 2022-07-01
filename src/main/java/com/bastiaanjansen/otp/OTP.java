@@ -33,7 +33,7 @@ class OTP {
     private static final HMACAlgorithm DEFAULT_HMAC_ALGORITHM = HMACAlgorithm.SHA1;
 
     /**
-     * Number of digits for generated code in range 6...8, defaults to 6
+     * Number of digits for generated code in range 4...8, defaults to 6
      */
     protected final int passwordLength;
 
@@ -49,7 +49,7 @@ class OTP {
 
     protected OTP(final Builder<?, ?> builder) {
         if (!validatePasswordLength(builder.passwordLength))
-            throw new IllegalArgumentException("Password length must be between 6 and 8 digits");
+            throw new IllegalArgumentException("Password length must be between 4 and 8 digits");
 
         if (builder.secret.length <= 0)
             throw new IllegalArgumentException("Secret must not be empty");
@@ -232,13 +232,13 @@ class OTP {
     }
 
     /**
-     * Check if password is in range 6...8
+     * Check if password is in range 4...8
      *
-     * @param passwordLength number of digits for generated code in range 6...8
+     * @param passwordLength number of digits for generated code in range 4...8
      * @return whether password is valid
      */
     private boolean validatePasswordLength(final int passwordLength) {
-        return passwordLength >= 6 && passwordLength <= 8;
+        return passwordLength >= 4 && passwordLength <= 8;
     }
 
     /**
@@ -249,7 +249,7 @@ class OTP {
      */
     protected abstract static class Builder<T extends OTP, B extends Builder<T, B>> {
         /**
-         * Number of digits for generated code in range 6...8, defaults to 6
+         * Number of digits for generated code in range 4...8, defaults to 6
          */
         private int passwordLength;
 
@@ -272,7 +272,7 @@ class OTP {
         /**
          * Change password length of code
          *
-         * @param passwordLength number of digits for generated code in range 6...8
+         * @param passwordLength number of digits for generated code in range 4...8
          * @return concrete builder
          */
         public B withPasswordLength(final int passwordLength) {

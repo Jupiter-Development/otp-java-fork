@@ -9,7 +9,7 @@ public class ExampleApp {
         // Create a TOTPGenerate instance
         TOTP.Builder builder = new TOTP.Builder(secret);
         TOTP totp = builder
-                .withPasswordLength(6)
+                .withPasswordLength(4)
                 .withAlgorithm(HMACAlgorithm.SHA1)
                 .build();
 
@@ -18,7 +18,8 @@ public class ExampleApp {
             System.out.println("Generated code: " + code);
 
             // To verify a codes
-            totp.verify(code); // true
+            Boolean verified = totp.verify(code); // true
+            System.out.println("Verified: " + verified);
         } catch (IllegalStateException e) {
             e.printStackTrace();
         }
